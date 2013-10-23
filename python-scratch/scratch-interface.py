@@ -14,11 +14,13 @@ r = Launcher()
 s = scratch.Scratch()
 time = 200
 
+print("Connected to USB Missile launcher... waiting for messages from Scratch")
+print("Press Ctrl+C to quit")
 # Loop continuously to wait for messages from scratch
 while True:
     # get a message broadcast from scratch
 	msg = s.receive()
-    cmd = msg[1]
+	cmd = msg[1]
     
     # process the message
 	"""
@@ -28,16 +30,16 @@ while True:
 	MOVE_UP: hopefully you've got the idea by now...
 	"""
 	if cmd == "MOVE_LEFT":
-        r.move(r.MOVE_LEFT, time)
-    elif cmd == "MOVE_RIGHT":
-        r.move(r.MOVE_RIGHT, time)
-    elif cmd == "MOVE_UP":
-        r.move(r.MOVE_UP, time)
-    elif cmd == "MOVE_DOWN":
-        r.move(r.MOVE_DOWN, time)
-    elif cmd == "FIRE":
-        r.fire()
-    elif cmd == "LED_ON":
-        r.set_led(True)
-    elif cmd == "LED_OFF":
-        r.set_led(False)
+		r.move(r.MOVE_LEFT, time)
+	elif cmd == "MOVE_RIGHT":
+		r.move(r.MOVE_RIGHT, time)
+	elif cmd == "MOVE_UP":
+		r.move(r.MOVE_UP, time)
+	elif cmd == "MOVE_DOWN":
+		r.move(r.MOVE_DOWN, time)
+	elif cmd == "FIRE":
+		r.fire()
+	elif cmd == "LED_ON":
+		r.set_led(True)
+	elif cmd == "LED_OFF":
+		r.set_led(False)
