@@ -42,14 +42,23 @@ class Launcher:
     dev = None
     
     def connect(self):
-        """
-        Connects to the missile launcher. This is called automatically - 
-        you don't need to call this function in your code. 
+        
+         """
+        Connects to the missile launcher. This is called automatically -
+        you don't need to call this function in your code.
         """
         self.dev = usb.core.find(idVendor=0x2123, idProduct=0x1010)
         if self.dev == None:
             raise ValueError("Could not connect to missile launcher")
+
+        if self.dev.is_kernel_driver_active(0) is True:
+            self.dev.detach_kernel_driver(0)
+            usb.util.claim_interface(self.dev, 0)
+
+        usb.util.release_interface(self.dev, 0)
+   
         self.dev.set_configuration()
+
     
     def check_connection(self):
         """
